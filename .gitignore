@@ -1,0 +1,6 @@
+task1/**
+.vscode/**
+*.json
+**__pycache__**
+dataset/**
+diya.py
