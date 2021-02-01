@@ -8,5 +8,8 @@ def modifyDictionarywithVariants(dictionary, variant_files):
             variants.update(dict(json.load(json_file)))
     for key in variants.keys():
         for variant in variants[key]:
-            dictionary[variant] = dictionary[key]
+            try:
+                dictionary[variant] = dictionary[key]
+            except:
+                continue
     return dictionary
