@@ -117,7 +117,8 @@
     "The scudamores punting co",
     "scudamore's punting"
   ],
-  "the cambridge punter": ["The Cambridge Punter's"],
+  "churchill college": ["churchills college", "churchill college's"],
+  "the cambridge punter": ["The Cambridge Punter's", "cambridge punter"],
   "whipple museum of the history of science": [
     "whipple",
     "The Whipple Museum",
@@ -229,7 +230,8 @@
   ],
   "cherry hinton water play": [
     "Cherry Hinton Water Play park",
-    "Cherry Hinton Water Park"
+    "Cherry Hinton Water Park",
+    "cherry hinton water park"
   ],
   "cherry hinton hall, cherry hinton road": [
     "Cherry Hinton Hall on Cherry Hinton Road",
@@ -243,13 +245,14 @@
   ],
   "camboats": ["caamboats", "the camboats", "camboats'"],
   "jesus green outdoor pool": ["The Jesus Green Outdoor Pool"],
-  "kings hedges learner pool": ["King Hedges Learner Pool"],
+  "kings hedges learner pool": ["King Hedges Learner Pool", "king hedges learner pool", "hedges learner pool"],
   "cambridge contemporary art": [
     "Cambridge Contemporary Art Museum",
     "Cambridge contemporary art museum",
     "The cambridge contemporary art museum",
     "Cambridge contemporary",
-    "contemporary art museum"
+    "contemporary art museum",
+    "cambridge contemporary art museum"
   ],
   "milton country park": ["Milton County Park"],
   "cambridge leisure park, clifton way": [
@@ -292,16 +295,17 @@
     "the cambridge corn exhange",
     "Cambridge corn exchange"
   ],
+  "trinity college": ["trinity street college"],
   "broughton house gallery": ["The Broughton House Gallery"],
   "jesus lane": ["Jesus Lane (because of course it is)"],
   "club salsa": ["the salsa", "The club salsa"],
   "the grafton centre, east road": ["The Grafton Centre on East Road"],
-  "saint catharine's college": ["saint catherine's college"],
+  "saint catharine's college": ["saint catherine's college", "catharine's college", "st catharines college"],
   "museum of archaelogy and anthropology": [
     "the museum of archaelogy and anthropology",
     "The Museum of Archaeology and Anthropology"
   ],
-  "christ's college": ["hrist's college", "the Christ's College"],
+  "christ's college": ["hrist's college", "the Christ's College", "christ college"],
   "byard art": ["The Byard Art Museum", "the byard museum", "The Byart Museum"],
   "mumford theatre": ["Mumford"],
   "cafe jello gallery": [
@@ -329,7 +333,7 @@
     "ADC",
     "The adc theatre"
   ],
-  "scott polar museum": ["The Scott Polar"],
+  "scott polar museum": ["The Scott Polar", "scott polar"],
   "pembroke college": ["Pembroke"],
   "ballare": ["the ballare", "The Ballare nightclub"],
   "lynne strover gallery": ["Lynn Strover Gallery"],
