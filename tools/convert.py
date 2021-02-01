@@ -9,11 +9,12 @@ import constants
 import re
 
 
-def ireplace(old, repl, text):
-    return re.sub("(?i)" + re.escape(old), lambda m: repl, text)
+def ireplace(old, new, s):
+    return re.sub(re.escape(old), new, s, flags=re.IGNORECASE)
 
 
 def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
+
     error = False
     error_info = []
     modify_info = {}
@@ -22,8 +23,9 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
             for info in dialog_act[key]:
                 try:
                     if str(info[1]).lower() in dictionary.keys():
-                        modify_info.update({info[1]: dictionary[info[1]]})
-                    info[1] = dictionary[info[1]]
+                        modify_info.update(
+                            {info[1]: dictionary[str(info[1]).lower()]})
+                    info[1] = dictionary[str(info[1]).lower()]
                 except:
                     if (
                         re.match("\d{2}:\d{2}", info[1])
@@ -72,9 +74,11 @@ def convertDialogActs(
                 )
             }
         )
-    dictionary = {**dictionary, **constants.car_dictionary, **constants.day_dictionary}
+    dictionary = {**dictionary, **constants.car_dictionary,
+                  **constants.day_dictionary}
     dictionary = modifyDictionarywithVariants(
-        dictionary, ["database/taxi-variants.json", "database/attraction-variants.json"]
+        dictionary, ["database/taxi-variants.json",
+                     "database/attraction-variants.json"]
     )
     errors = dict()
     for index in dataset_of_domain.index:
@@ -88,7 +92,8 @@ def convertDialogActs(
     with open("conversion-errors.json", "w") as f:
         json.dump(errors, f, indent=2)
     print(
-        "Dialogs and text successfully converted.\n{} error found.".format(len(errors))
+        "Dialogs and text successfully converted.\n{} error found.".format(
+            len(errors))
     )
 
 
@@ -98,6 +103,8 @@ def convert_text(modify_info, text):
             try:
                 text = ireplace(k, modify_info[k], text)
             except:
+                print(k)
+                print(modify_info[k])
                 continue
     return text
 
