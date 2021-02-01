@@ -1,0 +1,353 @@
+{
+  "queens' college": [
+    "queen's college",
+    "Queen's College",
+    "queens college",
+    "queen's"
+  ],
+  "silver street": ["Silver Street"],
+  "?": [
+    "I can't find the entrance fee information",
+    "don't have price info",
+    "no entrance fee information is available",
+    "unable to find the entrance fee",
+    "The entrance fee is unknown",
+    "unknown",
+    "don't have any information",
+    "do not have the entrance fee available",
+    "do not show the entrance fee in my database",
+    "no information",
+    "not sure",
+    "not known",
+    "I'm not showing any information on the entrance fee",
+    "not listed",
+    "isn't shown",
+    "I don't know",
+    "The entrance fee is not listed",
+    "The entrance fee isnt available on line",
+    "I don't have any information",
+    "unavailable",
+    "do not have that information",
+    "not showing anything",
+    "do not have information on their entrance fee",
+    "it's not showing up",
+    "No entrance fee information listed",
+    "I do not have any information on what their fee is",
+    "no phone number listed",
+    "no phone information given",
+    "I don't have any information on the entrance fee",
+    "don't have information",
+    "can't find the information in the database unfortunately",
+    "none of them have a listed entrance fee",
+    "I do not unfortunately have information",
+    "don't have a listing",
+    "not sure",
+    "a mystery",
+    "do not have information",
+    "not an entrance fee listed",
+    "y system doesn't tell me the entrance fee",
+    "don't show the entrance fee",
+    "There is no information",
+    "unlisted",
+    "unsure of the entrance fee",
+    "Unfortunately I don't have any information on the entrance fee"
+  ],
+  "cambridge passenger cruisers, jubilee house": [
+    "Cambridge Passenger Cruisers,Jubilee House"
+  ],
+  "cambridge and county folk museum": [
+    "Cambridge and Country Folk Museum",
+    "cambridge and country folk museum",
+    "The Cambridge and Country folk museum",
+    "The Cambridge and County Folk Museum",
+    "Cambridge and country folk museum",
+    "Cambridge & County Folk Museum",
+    "county folk museum"
+  ],
+  "east": ["east side", "east part of town", "east area"],
+  "west": [
+    "west side of town",
+    "west part of town",
+    "west area of the city",
+    "west end of the city",
+    "West part of town",
+    "west side",
+    "the west side"
+  ],
+  "south": [
+    "there",
+    "south part of town",
+    "south side",
+    "south end",
+    "south of town",
+    "South area"
+  ],
+  "centre": [
+    "the centre part of town",
+    "the center part of town",
+    "centre of town",
+    "center of town",
+    "Centre of town",
+    "the centre",
+    "centre area",
+    "city centre",
+    "city center",
+    "central",
+    "in the centre",
+    "town centre",
+    "in the centre",
+    "center",
+    "Center",
+    "centre of town?",
+    "centre of the city",
+    "close to the center of town",
+    "Centre of Cambridge"
+  ],
+  "north": ["North of the city"],
+  "gallery at twelve a high street": [
+    "Gallery at Twelve",
+    "gallery at twelve",
+    "gallery at twelve high st"
+  ],
+  "scudamores punting co": [
+    "Scudamores Punting Co.",
+    "scudamores punting",
+    "Scudamores punting company",
+    "Scudamores",
+    "The scudamores punting co",
+    "scudamore's punting"
+  ],
+  "the cambridge punter": ["The Cambridge Punter's"],
+  "whipple museum of the history of science": [
+    "whipple",
+    "The Whipple Museum",
+    "the Whipple Museum of the History of Science",
+    "the whipple museum of the history of science",
+    "The Whipple Museum of History of Science"
+  ],
+  "architecture": [
+    "churches",
+    "architectural attraction",
+    "architectural attractions",
+    "architecture attractions",
+    "old churches",
+    "architectural"
+  ],
+  "museum": [
+    "museums",
+    "galleries",
+    "museum's",
+    "a museum",
+    "some museums",
+    "Museums",
+    "art galleries",
+    "gallery",
+    "art museums"
+  ],
+  "theatre": [
+    "theaters",
+    "a theatre",
+    "theater",
+    "theatres",
+    "theatr",
+    "arts theater"
+  ],
+  "college": [
+    "colleges",
+    "school",
+    "Colleges",
+    "historic colleges",
+    "college attraction"
+  ],
+  "entertainment": [
+    "great entertainment",
+    "entertainments",
+    "entertainment venue",
+    "entertainment venues",
+    "entertainment center"
+  ],
+  "cinema": ["Movies", "movie theatre", "cinemas"],
+  "swimmingpool": [
+    "swimming pool",
+    "swimming pools",
+    "swimmingpools",
+    "pools",
+    "swim",
+    "learner pool",
+    "outdoor pool"
+  ],
+  "boat": ["boat attractions", "boating", "boating attraction", "boats"],
+  "nightclub": ["nightclubs", "night clubs", "night club", "a nightclub"],
+  "mutliple sports": [
+    "multiple sports",
+    "multiple sports center",
+    "multiple sports attraction",
+    "sports complexes"
+  ],
+  "park": ["parks", "country park"],
+  "concerthall": ["concerthalls", "concert hall", "a concert hall"],
+  "free": [
+    "no entrance fee",
+    "no entry fee",
+    "No entry fee",
+    "no admission fee",
+    "no entrance fees are listed",
+    "no entrance fee listed",
+    "free to enter",
+    "free to visit",
+    "free admission",
+    "free entrance",
+    "no fee",
+    "free entry",
+    "totally free",
+    "free of charge",
+    "completely free",
+    "Most of them are free",
+    "no charge"
+  ],
+  "soul tree nightclub": ["The Soul Tree"],
+  "cb23bu": ["cb23u"],
+  "primavera": ["the primavera", "Primavera's", "The Primavera"],
+  "all saints church": [
+    "All Saints",
+    "saints church",
+    "the all saints church",
+    "All Saint's Church",
+    "all saint's church"
+  ],
+  "wandlebury country park": ["Wandlebury"],
+  "saint barnabas press gallery": [
+    "Saint Barnabas Press Gallery's",
+    "and Saint Barnabas Press Gallery",
+    "st barnabas press gallery"
+  ],
+  "the junction": ["The Junction Theatre", "Junction on Clifton Way"],
+  "vue cinema": ["Vue cineman", "The Vue Cinema", "The vue cinema", "Vue"],
+  "cineworld cinema": ["Cineworld Cinema", "Cineworld"],
+  "sheep's green and lammas land park fen causeway": [
+    "and Sheep's Green and Lammas Land Park"
+  ],
+  "cherry hinton water play": [
+    "Cherry Hinton Water Play park",
+    "Cherry Hinton Water Park"
+  ],
+  "cherry hinton hall, cherry hinton road": [
+    "Cherry Hinton Hall on Cherry Hinton Road",
+    "Cherry Hinton Hall",
+    "cherry hinton hall"
+  ],
+  "the cherry hinton village centre": [
+    "Cherry Hinton Village centre",
+    "cherry hinton village centre",
+    "cherry hinton village center"
+  ],
+  "camboats": ["caamboats", "the camboats", "camboats'"],
+  "jesus green outdoor pool": ["The Jesus Green Outdoor Pool"],
+  "kings hedges learner pool": ["King Hedges Learner Pool"],
+  "cambridge contemporary art": [
+    "Cambridge Contemporary Art Museum",
+    "Cambridge contemporary art museum",
+    "The cambridge contemporary art museum",
+    "Cambridge contemporary",
+    "contemporary art museum"
+  ],
+  "milton country park": ["Milton County Park"],
+  "cambridge leisure park, clifton way": [
+    "cambridge leisure park",
+    "Cambridge Leisure Park",
+    "Cambridge Leisure Park on Clifton Way"
+  ],
+  "milton country park, milton": ["Milton", "milton"],
+  "the plough, green end, fen ditton,": ["The Plough, Green end, Fen Ditton"],
+  "abbey pool and astroturf pitch": ["the Abbey Pool", "abbey pool"],
+  "museum of classical archaeology": [
+    "The Museum of Classical Archaeology",
+    "Museum of Classical Archaology"
+  ],
+  "cambridge arts theatre": [
+    "The Cambridge Arts Theatre",
+    "the cambridge arts theatre",
+    "Cambridge Arts",
+    "cambridge arts"
+  ],
+  "magdalene college": ["Magdalene"],
+  "corpus christi": ["Corpus Christi College", "corpus christi college"],
+  "the man on the moon": [
+    "The man on the moon concerthall",
+    "e man on the moon at the concerthal",
+    "Man on the Moon",
+    "man on the moon"
+  ],
+  "14 king's parade": ["14 Kings Parade"],
+  "5 pounds": ["5 pound entrance fee", "five pounds", "5 GBP"],
+  "riverboat georgina": [
+    "The Riverboat Georgina",
+    "Riverboat Georgin",
+    "georgina",
+    "riverboat"
+  ],
+  "the cambridge corn exchange": [
+    "Cambridge Corn Exchange",
+    "and The Cambridge Corn Exchange",
+    "the cambridge corn exhange",
+    "Cambridge corn exchange"
+  ],
+  "broughton house gallery": ["The Broughton House Gallery"],
+  "jesus lane": ["Jesus Lane (because of course it is)"],
+  "club salsa": ["the salsa", "The club salsa"],
+  "the grafton centre, east road": ["The Grafton Centre on East Road"],
+  "saint catharine's college": ["saint catherine's college"],
+  "museum of archaelogy and anthropology": [
+    "the museum of archaelogy and anthropology",
+    "The Museum of Archaeology and Anthropology"
+  ],
+  "christ's college": ["hrist's college", "the Christ's College"],
+  "byard art": ["The Byard Art Museum", "the byard museum", "The Byart Museum"],
+  "mumford theatre": ["Mumford"],
+  "cafe jello gallery": [
+    "jello gallery",
+    "Cafe gallery",
+    "It's on cafe jello gallery"
+  ],
+  "cb12lf": ["CB12IF"],
+  "1223902112": ["01223 902 112"],
+  "gonville place": ["Gonvill Place"],
+  "between victoria road and the river": [
+    "between victoria road and the river\tcb43px",
+    "between victoria road and the river."
+  ],
+  "ruskin gallery": ["he ruskin gallery"],
+  "cambridge museum of technology": ["the museum of technology"],
+  "98 king street": ["98 King St"],
+  "2 norfolk street": ["2 norfolk st"],
+  "old schools": ["old school"],
+  "4 pounds": ["4 pound"],
+  "regent street": ["on regent street"],
+  "adc theatre": [
+    "The ADC Theatre",
+    "the adc theatre",
+    "ADC",
+    "The adc theatre"
+  ],
+  "scott polar museum": ["The Scott Polar"],
+  "pembroke college": ["Pembroke"],
+  "ballare": ["the ballare", "The Ballare nightclub"],
+  "lynne strover gallery": ["Lynn Strover Gallery"],
+  "people's portraits exhibition at girton college": [
+    "People's Portraits Exhibition (Girton College)"
+  ],
+  "tenpin": ["tepin", "The Tenpin"],
+  "the fitzwilliam museum": ["fitzwilliam museum"],
+  "49 newnham road": ["40 newham road"],
+  "hughes hall": ["Sure! Hughes Hall"],
+  "downing college": ["the downing college"],
+  "cambridge artworks": ["Cambridge Artworks'"],
+  "2 pounds": ["2 pound"],
+  "castle galleries": ["The castle galleries"],
+  "cambridge university botanic gardens": [
+    "the Cambridge University Botanic Gardens",
+    "The Botanic Gardens"
+  ],
+  "2-3 castle street": ["2-1 Castle Street"],
+  "the fez club": ["fez club"]
+}
