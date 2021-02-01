@@ -5,3 +5,4 @@ task1/**
 dataset/**
 diya.py
 !database/*-variants.json
+venv
