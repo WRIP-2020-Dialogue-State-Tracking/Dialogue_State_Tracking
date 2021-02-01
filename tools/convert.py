@@ -9,8 +9,8 @@ import constants
 import re
 
 
-def ireplace(old, new, s):
-    return re.sub(re.escape(old), new, s, flags=re.IGNORECASE)
+def ireplace(old, repl, text):
+    return re.sub("(?i)" + re.escape(old), lambda m: repl, text)
 
 
 def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
@@ -99,13 +99,10 @@ def convertDialogActs(
 
 def convert_text(modify_info, text):
     for k in modify_info.keys():
-        if text.find(k) != -1:
-            try:
-                text = ireplace(k, modify_info[k], text)
-            except:
-                print(k)
-                print(modify_info[k])
-                continue
+        try:
+            text = ireplace(k, modify_info[k], text)
+        except:
+            continue
     return text
 
 
