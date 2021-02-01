@@ -5,15 +5,23 @@ import itertools
 import re
 import json
 import constants
+import re
+
+
+def ireplace(old, repl, text):
+    return re.sub('(?i)'+re.escape(old), lambda m: repl, text)
 
 
 def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
     error = False
     error_info = []
+    modify_info={}
     for key in dialog_act:
         if key in modifiers:
             for info in dialog_act[key]:
                 try:
+                    if info[1] in dictionary.keys():
+                        modify_info.update({info[1]:dictionary[info[1]]})
                     info[1] = dictionary[info[1]]
                 except:
                     if (
@@ -28,7 +36,7 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
                         error = True
                         error_info.append({info[0]: info[1]})
                         continue
-    return error, error_info
+    return error, error_info , modify_info
 
 
 def convertDialogActs(
@@ -53,22 +61,39 @@ def convertDialogActs(
     """
     df = pd.read_excel(path_to_conversion_file, engine="openpyxl")
     dictionary = {
-        df["mapping_{}_english".format(word)][index].lower(): df[word][index]
+        df["mapping_{}_english".format(word)][index]: df[word][index]
         for index, word in itertools.product(range(0, len(df.index)), ontology)
     }
     dictionary = {**dictionary, **constants.car_dictionary, **constants.day_dictionary}
     errors = dict()
     for index in dataset_of_domain.index:
         for ind, dialog in enumerate(dataset_of_domain["log"][index]):
-            if ind % 2 == 0:
-                err, error_info = modifyDialogAct(
+                err, error_info ,modify_info = modifyDialogAct(
                     dialog["dialog_act"], dictionary, modifiers
                 )
+                dialog["text"]=convert_text(modify_info,dialog["text"])
                 if err:
                     errors.setdefault(index, []).append(error_info)
     with open("conversion-errors{}.json".format(modifiers[0]), "w") as f:
         json.dump(errors, f, indent=2)
-    print("Dialogs successfully converted.\n{} error found.".format(len(errors)))
+    print("Dialogs and text successfully converted.\n{} error found.".format(len(errors)))
+
+
+def convert_text(modify_info , text):
+    print(modify_info)
+    for k in modify_info.keys():
+        if (text.find(k) != -1) :
+            try:
+                text=ireplace(k,modify_info[k],text)
+            except:
+                continue
+    print(text)
+    return text
+    
+
+
+
+
 
 
 if __name__ == "__main__":
