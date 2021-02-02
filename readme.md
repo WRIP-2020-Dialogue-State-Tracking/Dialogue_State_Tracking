@@ -51,3 +51,22 @@ python convert_to_multiwoz_format.py --multiwoz21_data_dir=<multiwoz21_data_dir>
 ```
 python task2_convert_hindi.py
 ```
+
+# Task-3
+
+We have performed the following subtasks:-
+
+- Creating variants for all 3 domains
+- Mapping the meta-data
+- Mapping the dialogue text to hindi words took up from the dialogue act
+
+A folder named `dataset` will be made in which the folder of all domains are there along with the folder `database_txt` . The folder `database_txt` contains the subfolders in which the files having only the goal and dialogue text mapped in hindi.
+
+Run the command :
+
+```
+python3 task2_convert_hindi.py
+```
+The prompt ask to input the path of the data file.
+
+ `Some variants are still pending and not incorporated the replace in the text yet have some confusion in it.`
