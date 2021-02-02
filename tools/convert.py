@@ -23,7 +23,7 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
             for info in dialog_act[key]:
                 try:
                     if str(info[1]).lower() in dictionary.keys():
-                        modify_info.update({info[1]: dictionary[info[1]]})
+                        modify_info.update({info[1]: dictionary[str(info[1]).lower()]})
                     info[1] = dictionary[str(info[1]).lower()]
                 except:
                     if (
@@ -186,6 +186,7 @@ def convertDialogs(
     dictionary = modifyDictionarywithVariants(
         dictionary, ["database/taxi-variants.json", "database/attraction-variants.json"]
     )
+    print(dictionary["Black Tesla".lower()])
     errors = dict()
     metadata_errors = dict()
     for index in dataset_of_domain.index:
