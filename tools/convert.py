@@ -1,6 +1,6 @@
 import typings
 from database.variants import modifyDictionarywithVariants
-from typing import List
+from typing import List, Dict
 import pandas as pd
 import itertools
 import re
@@ -23,8 +23,7 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
             for info in dialog_act[key]:
                 try:
                     if str(info[1]).lower() in dictionary.keys():
-                        modify_info.update(
-                            {info[1]: dictionary[str(info[1]).lower()]})
+                        modify_info.update({info[1]: dictionary[info[1]]})
                     info[1] = dictionary[str(info[1]).lower()]
                 except:
                     if (
@@ -41,6 +40,7 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
                         continue
     return error, error_info, modify_info
 
+
 def modifyMetadata(metadata, dictionary, selected_domains):
     error = False
     error_info = []
@@ -48,15 +48,19 @@ def modifyMetadata(metadata, dictionary, selected_domains):
         if domain in selected_domains:
             for key in metadata[domain]:
                 for slot in metadata[domain][key]:
-                    if slot == 'booked':
-                        for booked_index, booked_dict in enumerate(metadata[domain][key][slot]):
+                    if slot == "booked":
+                        for booked_index, booked_dict in enumerate(
+                            metadata[domain][key][slot]
+                        ):
                             skip = False
                             for booked_key in booked_dict:
                                 values = booked_dict[booked_key]
                                 if isinstance(values, list):
                                     for value in values:
                                         try:
-                                            metadata[domain][key][slot][booked_index][booked_key] = dictionary[str(value).lower()]
+                                            metadata[domain][key][slot][booked_index][
+                                                booked_key
+                                            ] = dictionary[str(value).lower()]
                                             skip = True
                                             break
                                         except:
@@ -69,17 +73,28 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                             ):
                                                 skip = True
                                                 break
-                                    if skip == False and metadata[domain][key][slot] != []:
+                                    if (
+                                        skip == False
+                                        and metadata[domain][key][slot] != []
+                                    ):
                                         error = True
-                                        error_info.append({domain: {
-                                            key: {
-                                                slot: metadata[domain][key][slot]
+                                        error_info.append(
+                                            {
+                                                domain: {
+                                                    key: {
+                                                        slot: metadata[domain][key][
+                                                            slot
+                                                        ]
+                                                    }
+                                                }
                                             }
-                                        }})
+                                        )
                                 else:
-                                    value = values    
+                                    value = values
                                     try:
-                                        metadata[domain][key][slot][booked_index][booked_key] = dictionary[str(value).lower()]
+                                        metadata[domain][key][slot][booked_index][
+                                            booked_key
+                                        ] = dictionary[str(value).lower()]
                                         break
                                     except:
                                         if (
@@ -93,17 +108,25 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                             continue
                                         else:
                                             error = True
-                                            error_info.append({domain: {
-                                                key: {
-                                                    slot: metadata[domain][key][slot]
+                                            error_info.append(
+                                                {
+                                                    domain: {
+                                                        key: {
+                                                            slot: metadata[domain][key][
+                                                                slot
+                                                            ]
+                                                        }
+                                                    }
                                                 }
-                                            }})
+                                            )
                                             continue
                     else:
                         skip = False
                         for value in metadata[domain][key][slot]:
                             try:
-                                metadata[domain][key][slot] = dictionary[str(value).lower()]
+                                metadata[domain][key][slot] = dictionary[
+                                    str(value).lower()
+                                ]
                                 skip = True
                                 break
                             except:
@@ -118,22 +141,18 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                     break
                         if skip == False and metadata[domain][key][slot] != []:
                             error = True
-                            error_info.append({domain: {
-                                key: {
-                                    slot: metadata[domain][key][slot]
-                                }
-                            }})
-                        
+                            error_info.append(
+                                {domain: {key: {slot: metadata[domain][key][slot]}}}
+                            )
+
     return error, error_info
 
 
-
-
-def convertDialogActsAndMetadata(
+def convertDialogs(
     dataset_of_domain: typings.dataframe,
     conversion_files: List[str],
-    modifiers: List[str],
-    selected_domains: List[str]
+    modifiers: List[Dict[str, str]],
+    selected_domains: List[str],
 ):
     """Converts dialog acts and meta data of a Dataframe into another language
 
@@ -163,11 +182,9 @@ def convertDialogActsAndMetadata(
                 )
             }
         )
-    dictionary = {**dictionary, **constants.car_dictionary,
-                  **constants.day_dictionary}
+    dictionary = {**dictionary, **constants.car_dictionary, **constants.day_dictionary}
     dictionary = modifyDictionarywithVariants(
-        dictionary, ["database/taxi-variants.json",
-                     "database/attraction-variants.json"]
+        dictionary, ["database/taxi-variants.json", "database/attraction-variants.json"]
     )
     errors = dict()
     metadata_errors = dict()
@@ -179,8 +196,8 @@ def convertDialogActsAndMetadata(
             dialog["text"] = convert_text(modify_info, dialog["text"])
             if err:
                 errors.setdefault(index, []).append(error_info)
-            
-            if dialog['metadata'] == {}:
+
+            if dialog["metadata"] == {}:
                 continue
             metadata_err, metadata_error_info = modifyMetadata(
                 dialog["metadata"], dictionary, selected_domains
@@ -189,12 +206,11 @@ def convertDialogActsAndMetadata(
                 metadata_errors.setdefault(index, []).append(metadata_error_info)
 
     with open("metadata-errors.json", "w") as f:
-        json.dump(metadata_errors, f, indent=2)   
+        json.dump(metadata_errors, f, indent=2)
     with open("conversion-errors.json", "w") as f:
         json.dump(errors, f, indent=2)
     print(
-        "Dialogs and text successfully converted.\n{} error found.".format(
-            len(errors))
+        "Dialogs and text successfully converted.\n{} error found.".format(len(errors))
     )
 
 
