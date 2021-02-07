@@ -49,7 +49,7 @@ python convert_to_multiwoz_format.py --multiwoz21_data_dir=<multiwoz21_data_dir>
 - Convert Data _(takes path of data.json as input)_. This will dump all errors of domains into their json files.
 
 ```
-python task2_convert_hindi.py
+python convert_hindi.py
 ```
 
 # Task-3
@@ -65,7 +65,7 @@ A folder named `dataset` will be made in which the folder of all domains are the
 Run the command :
 
 ```
-python3 task2_convert_hindi.py
+python3 convert_hindi.py
 ```
 The prompt ask to input the path of the data file.
 
