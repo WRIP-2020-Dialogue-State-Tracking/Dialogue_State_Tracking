@@ -12,6 +12,36 @@ import re
 def ireplace(old, repl, text):
     return re.sub("(?i)" + re.escape(old), lambda m: repl, text)
 
+def fixAddress(
+    dataset_of_domain: typings.dataframe,
+    selected_domains: List[str]
+):
+    for index in dataset_of_domain.index:
+        for _, dialog in enumerate(dataset_of_domain["log"][index]):
+            dialog_act = dialog["dialog_act"]
+            for domain in selected_domains: 
+                for key in dialog_act:
+                    remove_entries = []
+                    if re.search(domain, key, flags=re.IGNORECASE):
+                        address_exists = False
+                        for info in dialog_act[key]:
+                            if info[0] == "address":
+                                address_exists = True
+                                break
+                        if not address_exists:
+                            continue
+                        address = ["address", ""]
+                        for info in dialog_act[key]:
+                            if info[0] == "address":
+                                address[1] += info[1] + ", "
+                                remove_entries.append(info)
+                        for entry in remove_entries:
+                            dialog_act[key].remove(entry)
+                        address[1] = address[1][:-2]
+                        dialog_act[key].append(address)
+
+    print("Address Fixed.")
+
 
 def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
 
