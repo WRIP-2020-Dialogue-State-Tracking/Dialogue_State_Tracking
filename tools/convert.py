@@ -130,10 +130,12 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                         for booked_index, booked_dict in enumerate(
                             metadata[domain][key][slot]
                         ):
-                            skip = False
                             for booked_key in booked_dict:
+                                skip = False
                                 values = booked_dict[booked_key]
                                 if isinstance(values, list):
+                                    if len(values) == 0:
+                                        continue
                                     for value in values:
                                         try:
                                             metadata[domain][key][slot][booked_index][
@@ -148,13 +150,30 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                                 or re.match("\d{1}:\d{2}", value)
                                                 or value == "none"
                                                 or value == "dontcare"
+                                                or booked_key == "reference"
                                             ):
                                                 skip = True
                                                 break
+                                            else:
+                                                close_matches = get_close_matches(
+                                                    (str(metadata[domain][key][slot][booked_index][
+                                                        booked_key
+                                                    ])).lower(),
+                                                    list(dictionary.keys()),
+                                                    1,
+                                                    0.001,
+                                                )
+                                                if len(close_matches) >= 1:
+                                                    metadata[domain][key][slot][booked_index][
+                                                        booked_key
+                                                    ] = dictionary[close_matches[0]]
+                                                    skip = True
+                                                    break
                                     if (
                                         skip == False
                                         and metadata[domain][key][slot] != []
                                     ):
+                                        print("sad")
                                         error = True
                                         error_info.append(
                                             {
@@ -173,7 +192,6 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                         metadata[domain][key][slot][booked_index][
                                             booked_key
                                         ] = dictionary[str(value).lower()]
-                                        break
                                     except:
                                         if (
                                             re.match("\d{2}:\d{2}", value)
@@ -185,19 +203,32 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                         ):
                                             continue
                                         else:
-                                            error = True
-                                            error_info.append(
-                                                {
-                                                    domain: {
-                                                        key: {
-                                                            slot: metadata[domain][key][
-                                                                slot
-                                                            ]
+                                            close_matches = get_close_matches(
+                                                (str(metadata[domain][key][slot][booked_index][
+                                                    booked_key
+                                                ])).lower(),
+                                                list(dictionary.keys()),
+                                                1,
+                                                0.001,
+                                            )
+                                            if len(close_matches) >= 1:
+                                                metadata[domain][key][slot][booked_index][
+                                                    booked_key
+                                                ] = dictionary[close_matches[0]]
+                                            else:
+                                                error = True
+                                                error_info.append(
+                                                    {
+                                                        domain: {
+                                                            key: {
+                                                                slot: metadata[domain][key][
+                                                                    slot
+                                                                ]
+                                                            }
                                                         }
                                                     }
-                                                }
-                                            )
-                                            continue
+                                                )
+                                                continue
                     else:
                         skip = False
                         for value in metadata[domain][key][slot]:
@@ -214,9 +245,21 @@ def modifyMetadata(metadata, dictionary, selected_domains):
                                     or re.match("\d{1}:\d{2}", value)
                                     or value == "none"
                                     or value == "dontcare"
+                                    or slot == "reference"
                                 ):
                                     skip = True
                                     break
+                                else:
+                                    close_matches = get_close_matches(
+                                        (str(metadata[domain][key][slot])).lower(),
+                                        list(dictionary.keys()),
+                                        1,
+                                        0.001,
+                                    )
+                                    if len(close_matches) >= 1:
+                                        metadata[domain][key][slot] = dictionary[close_matches[0]]
+                                        skip = True
+                                        break
                         if skip == False and metadata[domain][key][slot] != []:
                             error = True
                             error_info.append(
