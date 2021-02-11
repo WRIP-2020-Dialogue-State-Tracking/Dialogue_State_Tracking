@@ -5,7 +5,11 @@
   "the junction": ["junction theatre"],
   "gonville and caius college": ["gonville place"],
   "the oak bistro": ["oak bistro"],
-  "maharajah tandoori restaurant": ["maharajah taondoori", "maharajah tandoor"],
+  "maharajah tandoori restaurant": [
+    "maharajah taondoori",
+    "maharajah tandoor",
+    "the maharajah tandoor"
+  ],
   "riverboat georgina": ["georgina", "riverboat"],
   "vue cinema": ["vue"],
   "the fitzwilliam museum": ["fitzwilliam museum"],
