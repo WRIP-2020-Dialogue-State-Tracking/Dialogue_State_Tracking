@@ -1,3 +1,4 @@
+from numpy.core.fromnumeric import var
 import typings
 from database.variants import modifyDictionarywithVariants
 from typing import List, Dict
@@ -7,6 +8,7 @@ import re
 import json
 import constants
 import re
+from difflib import get_close_matches
 
 
 def ireplace(old, repl, text):
@@ -43,13 +45,19 @@ def fixAddress(
     print("Address Fixed.")
 
 
-def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
+def modifyDialogAct(
+    dialog_act,
+    dictionary: Dict[str, str],
+    modifiers,
+    x_dict,
+    variants: Dict[str, List[str]],
+) -> str:
 
     error = False
     error_info = []
     modify_info = {}
     for key in dialog_act:
-        if key in modifiers:
+        if key:
             for info in dialog_act[key]:
                 try:
                     if str(info[1]).lower() in dictionary.keys():
@@ -62,11 +70,51 @@ def modifyDialogAct(dialog_act, dictionary, modifiers) -> str:
                         or re.match("\d{1}:\d{2}", info[1])
                         or info[0] == "none"
                         or info[1] == "dontcare"
+                        or info[1] == "?"
+                        or info[0] == "choice"
+                        or info[0] == "ref"
                     ):
                         continue
                     else:
-                        error = True
-                        error_info.append({info[0]: info[1]})
+                        close_matches = get_close_matches(
+                            (str(info[1])).lower(),
+                            list(dictionary.keys()),
+                            1,
+                            0.001,
+                        )
+                        if len(close_matches) >= 1:
+                            # prompt = str(
+                            #     input(
+                            #         "Map "
+                            #         + close_matches[0]
+                            #         + " to "
+                            #         + (str(info[1]))
+                            #         + " ? Y/N "
+                            #     )
+                            # )
+                            # if prompt == "Y":
+                            #     variants.setdefault(close_matches[0], []).append(
+                            #         info[1]
+                            #     )
+                            #     print("Done!!")
+                            #     dictionary[info[1]] = dictionary[close_matches[0]]
+                            info[1] = dictionary[close_matches[0]]
+                        #     with open(
+                        #         "dictionary-final.json", "w", encoding="utf-8"
+                        #     ) as f:
+                        #         json.dump(dictionary, f, ensure_ascii=False)
+                        #     with open(
+                        #         "variants-extra.json", "w", encoding="utf-8"
+                        #     ) as f:
+                        #         json.dump(variants, f, ensure_ascii=False)
+                        else:
+                            error = True
+                            error_info.append({info[0]: info[1]})
+                            x_dict.setdefault(key, []).append(error_info)
+                        # else:
+                        # error = True
+                        # error_info.append({info[0]: info[1]})
+                        # x_dict.setdefault(key, []).append(error_info)
                         continue
     return error, error_info, modify_info
 
@@ -204,9 +252,9 @@ def convertDialogs(
         df = pd.read_excel(file["name"], engine="openpyxl")
         dictionary.update(
             {
-                str(df["mapping_{}_english".format(word)][index]).lower(): df[word][
-                    index
-                ]
+                str(df["mapping_{}_english".format(word)][index]).lower(): str(
+                    df[word][index]
+                )
                 for index, word in itertools.product(
                     range(0, len(df.index)), file["ontology"]
                 )
@@ -214,15 +262,26 @@ def convertDialogs(
         )
     dictionary = {**dictionary, **constants.car_dictionary, **constants.day_dictionary}
     dictionary = modifyDictionarywithVariants(
-        dictionary, ["database/taxi-variants.json", "database/attraction-variants.json"]
+        dictionary,
+        [
+            "database/taxi-variants.json",
+            "database/attraction-variants.json",
+            "database/restaurant-variants.json",
+            "database/variants-extra.json",
+        ],
     )
-    print(dictionary["Black Tesla".lower()])
     errors = dict()
+    errors_by_modifier = dict()
     metadata_errors = dict()
+    variants = dict()
     for index in dataset_of_domain.index:
         for ind, dialog in enumerate(dataset_of_domain["log"][index]):
             err, error_info, modify_info = modifyDialogAct(
-                dialog["dialog_act"], dictionary, modifiers
+                dialog["dialog_act"],
+                dictionary,
+                modifiers,
+                errors_by_modifier,
+                variants,
             )
             dialog["text"] = convert_text(modify_info, dialog["text"])
             if err:
@@ -236,9 +295,15 @@ def convertDialogs(
             if metadata_err:
                 metadata_errors.setdefault(index, []).append(metadata_error_info)
 
-    with open("metadata-errors.json", "w") as f:
+    with open("metadata-errors.json", "w", encoding="utf-8") as f:
         json.dump(metadata_errors, f, indent=2)
-    with open("conversion-errors.json", "w") as f:
+    with open("dictionary-final.json", "w", encoding="utf-8") as f:
+        json.dump(dictionary, f, ensure_ascii=False)
+    with open("variants-extra.json", "w", encoding="utf-8") as f:
+        json.dump(variants, f, ensure_ascii=False)
+    with open("modifier-errors.json", "w", encoding="utf-8") as f:
+        json.dump(errors_by_modifier, f)
+    with open("conversion-errors.json", "w", encoding="utf-8") as f:
         json.dump(errors, f, indent=2)
     print(
         "Dialogs and text successfully converted.\n{} error found.".format(len(errors))

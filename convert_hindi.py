@@ -5,7 +5,7 @@ if __name__ == "__main__":
     from tools.write import writeSplitDatasetToJson
     import constants
 
-    path = input("Enter Dataset Path : ")
+    path = "database/multiwoz_2.1.json"
     dataset = splitIntoDomains(path, domains, selected_domains)
     req_dataset = getDatasetOfDomain(selected_domains, dataset)
     fixAddress(
@@ -29,6 +29,6 @@ if __name__ == "__main__":
             },
         ],
         ["Taxi-Inform", "Restaurant-Inform", "Attraction-Inform"],
-        constants.selected_domains
+        constants.selected_domains,
     )
     writeSplitDatasetToJson(dataset, True)

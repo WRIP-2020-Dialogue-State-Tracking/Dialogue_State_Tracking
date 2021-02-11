@@ -9,7 +9,7 @@ def modifyDictionarywithVariants(dictionary, variant_files):
     for key in variants.keys():
         for variant in variants[key]:
             try:
-                dictionary[variant] = dictionary[key]
+                dictionary[variant.lower()] = dictionary[key].lower()
             except:
                 continue
     return dictionary

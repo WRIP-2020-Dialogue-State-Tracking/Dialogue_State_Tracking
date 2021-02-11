@@ -4,5 +4,5 @@ task1/**
 **__pycache__**
 dataset/**
 diya.py
-!database/*-variants.json
+!database/*variants*
 venv
