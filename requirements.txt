@@ -12,3 +12,4 @@ numpy == 1.19.0
 # D:\WSL\wrip\tools\segregate.py: 6
 pandas == 1.0.3
 openpyxl == 3.0.6
+pygoogletranslation==2.0.5

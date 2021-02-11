@@ -3,6 +3,7 @@ if __name__ == "__main__":
     from tools.segregate import splitIntoDomains, getDatasetOfDomain
     from tools.convert import convertDialogs, fixAddress
     from tools.write import writeSplitDatasetToJson
+    from tools.translate import translateDialogs
     import constants
 
     path = "database/multiwoz_2.1.json"
@@ -32,3 +33,5 @@ if __name__ == "__main__":
         constants.selected_domains,
     )
     writeSplitDatasetToJson(dataset, True)
+    translateDialogs(dataset)
+
