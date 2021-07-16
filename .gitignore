@@ -6,3 +6,7 @@ dataset/**
 diya.py
 !database/*variants*
 venv
+database/*.xlsx
+database/*.json
+.gitsecret/keys/random_seed
+!*.secret
